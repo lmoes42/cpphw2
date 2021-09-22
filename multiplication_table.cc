@@ -10,8 +10,7 @@
 
 int main(int argc, char *argv[])
 {
-    size_t integer;                     // Declare the integer we will be using
-    std::cin >> integer;                // Get input; define integer
+    size_t integer = std::stoul(argv[1]); // Get input given as ./a.out integer
 
     // Main for loop for multiplying with the numbers 1-10
     for (size_t multiplicant = 1; multiplicant != 11; ++multiplicant)
@@ -23,4 +22,6 @@ int main(int argc, char *argv[])
             multiplicant * integer <<   // Output result
             '\n';                       // Output newline
     }
+
+    return 0; // This just here to annoy you
 }
