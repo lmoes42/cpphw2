@@ -1,0 +1,21 @@
+In proper layout the statement is interpreted as:
+  if (first == test1)
+    {
+      if (second == test2)
+      {
+        value = 5;
+      }
+        else value = 6;
+    }
+For the non-default interpretation we could write
+  if (first == test1)
+    {
+      if (second == test2)
+      {
+        value = 5;
+      }
+    }
+  else
+    value = 6;
+Which checks the first if statement, and otherwise goes to else.
+The flaw is the lack of proper syntax.
