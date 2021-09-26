@@ -29,36 +29,15 @@
 #include <iostream>
 using namespace std;
 
-/******************************************************************************
-* Function:         pow(a,b)
-* Description:      Compute a^b
-* Return:           a^b
-*****************************************************************************/
-size_t pow(size_t base, size_t exponent)
-{
-    size_t result = 1;
-
-    while(exponent > 0)
-    {
-
-        // Check if exponent is odd
-        if ((exponent & 1))
-            result = result * base;
-
-        // Divide exponent by 2
-        exponent = exponent >> 1;
-        base = base * base;
-
-    }
-    return result;
-}
-
 int main(int argc, char *argv[])
 {
     ++argv;                                                           // Get rid of name of program
 
-    size_t integerBound = pow(2, argc - 1),                           // Get number of selections,
+    size_t integerBound = 1,                                          // Get number of selections,
            integerCopy, binaryIterator;                               // Declare variables to be used in the loop so that we don't re declare them every iteration
+
+    for (size_t integerBoundIterator = argc; --integerBoundIterator;) // Iterate argc times
+        integerBound *= 2;                                            // set IntegerBound to 2^(argc - 1)
 
     for (size_t integer = 0; integer != integerBound; ++integer)      // Go through 2^n - 1 integers
     {
