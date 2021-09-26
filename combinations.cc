@@ -1,30 +1,38 @@
+/******************************************************************************
+* File:             combinations.cc
+*
+* Author:           Levi Moes
+* Created:          09/26/21
+* Description:      Output all combinations
+* of the given arguments
+*
+* In the example we get that there are 3 inputs
+* and we wish to output every possible selection,
+* this gives 3 choose 0 + 3 choose 1 + ... + 3 choose 3 = 8,
+* so more generally for n inputs we have by the binomial theorem
+* n choose 0 + ... + n choose n = 2^n options
+* In fact, we see that this 2^n makes sense, as
+* printing this corresponds to printing the binary numbers
+* of length argc - 1, for the given example:
+* 000
+* 100
+* 010
+* 110
+* 001
+* 101
+* 011
+* 111
+* Where we replace 1 with the argument in that position, and
+* print nothing for 0
+*****************************************************************************/
 
 #include <iostream>
 using namespace std;
 
-// In the example we get that there are 3 inputs
-// and we wish to output every possible selection,
-// this gives 3 choose 0 + 3 choose 1 + ... + 3 choose 3 = 8,
-// so more generally for n inputs we have by the binomial theorem
-// n choose 0 + ... + n choose n = 2^n options
-// In fact, we see that this 2^n makes sense, as
-// printing this corresponds to printing the binary numbers
-// of length argc - 1, for the given example:
-// 000
-// 100
-// 010
-// 110
-// 001
-// 101
-// 011
-// 111
-
 /******************************************************************************
 * Function:         pow(a,b)
 * Description:      Compute a^b
-* Where:
 * Return:           a^b
-* Error:
 *****************************************************************************/
 size_t pow(size_t base, size_t exponent)
 {
@@ -36,9 +44,9 @@ size_t pow(size_t base, size_t exponent)
       if ((exponent & 1))
           result = result * base;
 
-    // Divide exponent by 2
-		exponent = exponent >> 1;
-		base = base * base;
+      // Divide exponent by 2
+      exponent = exponent >> 1;
+      base = base * base;
 
 	}
 	return result;
@@ -54,7 +62,7 @@ int main(int argc, char *argv[])
     size_t integerBound = pow(2, args_size),                         // Get number of selections,
            integerCopy, binaryIterator;                              // Declare variables to be used in the loop
                                                                      // so that we don't re declare them every iteration
-    for (int integer = 0; integer != integerBound; ++integer)        // Go through 2^n - 1 integers
+    for (size_t integer = 0; integer != integerBound; ++integer)        // Go through 2^n - 1 integers
     {
 
         binaryIterator = 0;                                          // Declare iterator for while loop
