@@ -55,28 +55,25 @@ size_t pow(size_t base, size_t exponent)
 
 int main(int argc, char *argv[])
 {
-    const size_t args_size = argc - 1;                               // Get number of relevant arguments
-    char *args[args_size];                                           // Declare array to store arguments
-    for (size_t argIterator = 1; argIterator != argc; ++argIterator) // Put arguments in array
-        args[argIterator - 1] = argv[argIterator];                   //
-                                                                     //
-    size_t integerBound = pow(2, args_size),                         // Get number of selections,
-           integerCopy, binaryIterator;                              // Declare variables to be used in the loop
-                                                                     // so that we don't re declare them every iteration
-    for (size_t integer = 0; integer != integerBound; ++integer)        // Go through 2^n - 1 integers
+    ++argv;                                                           // Get rid of name of program
+
+    size_t integerBound = pow(2, argc - 1),                           // Get number of selections,
+           integerCopy, binaryIterator;                               // Declare variables to be used in the loop so that we don't re declare them every iteration
+
+    for (size_t integer = 0; integer != integerBound; ++integer)      // Go through 2^n - 1 integers
     {
 
-        binaryIterator = 0;                                          // Declare iterator for while loop
-        integerCopy = integer;                                       // Make copy of integer so we can apply >>= on it
+        binaryIterator = 0;                                           // Declare iterator for while loop
+        integerCopy = integer;                                        // Make copy of integer so we can apply >>= on it
 
-        cout << integer + 1 << ": ";                                 // Output line number
-        while (integerCopy)                                          // Continue until integerCopy == 0
+        cout << integer + 1 << ": ";                                  // Output line number
+        while (integerCopy)                                           // Continue until integerCopy == 0
         {
-            if (integerCopy & 1) cout << args[binaryIterator] << ' ';// If the last digit in the binary expansion of integer is a 1 we print the argument
-            else                 cout << "";                         // Else print nothing
-            integerCopy >>= 1;                                       // Get next bit
-            ++binaryIterator;                                        // Get next argument
+            if (integerCopy & 1) cout << argv[binaryIterator] << ' '; // If the last digit in the binary expansion of integer is a 1 we print the argument
+            else                 cout << "";                          // Else print nothing
+            integerCopy >>= 1;                                        // Get next bit
+            ++binaryIterator;                                         // Get next argument
         }
-        cout << '\n';                                                // Output newline
+        cout << '\n';                                                 // Output newline
     }
 }
