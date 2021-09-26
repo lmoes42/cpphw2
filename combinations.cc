@@ -33,11 +33,8 @@ int main(int argc, char *argv[])
 {
     ++argv;                                                           // Get rid of name of program
 
-    size_t integerBound = 1,                                          // Get number of selections,
+    size_t integerBound = 1 << (argc - 1),                            // Get number of selections, set integetBound = 2^(argc - 1)
            integerCopy, binaryIterator;                               // Declare variables to be used in the loop so that we don't re declare them every iteration
-
-    for (size_t integerBoundIterator = argc; --integerBoundIterator;) // Iterate argc times
-        integerBound *= 2;                                            // set IntegerBound to 2^(argc - 1)
 
     for (size_t integer = 0; integer != integerBound; ++integer)      // Go through 2^n - 1 integers
     {
