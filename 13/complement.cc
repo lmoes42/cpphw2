@@ -5,13 +5,19 @@ void printBinaryRepresentation(size_t number)
 {
     size_t bits[1024] = {}, bitsIterator = 0;
     size_t powerOf2[1024] = {};
-    while (number)                                           // Continue until integerCopy == 0
+
+    // Loop to find which powers of two
+    // sum to number
+    while (number)
     {
         powerOf2[bitsIterator] = 0;
         bits[bitsIterator++] = (number & 1 ? 1 : 0);
-        number >>= 1;                                        // Get next bit
+
+        // Divide out power of 2
+        number >>= 1;
     }
 
+    // Print the bits we found in reverse order
     for (size_t decrementor = bitsIterator; decrementor--;)
     {
         cout << bits[decrementor];
@@ -19,9 +25,11 @@ void printBinaryRepresentation(size_t number)
             powerOf2[decrementor] = 1 << (decrementor);
     }
     cout << ' ' << '=';
-    for (size_t incrementor = 0; incrementor != bitsIterator; ++incrementor)
+    for (size_t decrementor = bitsIterator; decrementor--;)
     {
-        cout << ' ' << '+' << ' ' << powerOf2[incrementor];
+        if (powerOf2[decrementor])
+            cout << (decrementor < bitsIterator - 1 ? " + " : " ")
+                 << powerOf2[decrementor];
     }
     cout << '\n';
 }
@@ -31,6 +39,7 @@ int main(int argc, char *argv[])
 {
     size_t integer = stoul(argv[1]);
 
+    cout << integer << " = ";
     printBinaryRepresentation(integer);
 
 }

@@ -1,0 +1,34 @@
+If statement referred to:
+ if (first == test1) if (second == test2) value = 5; else value = 6;
+
+Question 1:
+describe in your own words how the compiler interprets this statement;
+In proper layout the statement is interpreted as:
+  if (first == test1)
+    {
+      if (second == test2)
+      {
+        value = 5;
+      }
+        else value = 6;
+    }
+
+Question 2:
+rewrite this statement using the correct layout (no additional syntax
+elements may be used);
+
+For the non-default interpretation we could write
+  if (first == test1)
+    {
+      if (second == test2)
+      {
+        value = 5;
+      }
+    }
+  else
+    value = 6;
+Which checks the first if statement, and otherwise goes to else.
+
+Q What is the flaw
+instead of the interpretation as used by the compiler: how would you change the statement so that the `non-default' interpretation is used?
+The flaw is the lack of proper syntax.
